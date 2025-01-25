@@ -92,13 +92,13 @@ const getProduct = async (id: string) => {
   return product;
 };
 
-interface Props {
+interface PageProps {
   params: {
     id: string;
   };
 }
 
-const Page = async ({ params }: Props) => {
+const Page = async ({ params }: PageProps) => {
   const product = await getProduct(params.id);
 
   if (!product) {
