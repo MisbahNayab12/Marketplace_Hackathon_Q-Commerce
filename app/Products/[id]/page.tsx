@@ -94,12 +94,12 @@ const getProduct = async (id: string) => {
 
 interface PageProps {
   params: {
-    id: string;
+    _id: string;
   };
 }
 
 const Page = async ({ params }: PageProps) => {
-  const product = await getProduct(params.id);
+  const product = await getProduct(params._id);
 
   if (!product) {
     return <p>Product not found</p>;
