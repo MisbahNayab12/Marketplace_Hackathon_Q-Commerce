@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useAppSelector } from '@/redux/features/store';
 import Arrow from '../../public/ArrowRight.png'
 
-export default function checkout() {
+export default function Checkout() {
     const cartItems = useAppSelector((state) => state.cartReducer);
 
     const totalAmount = cartItems.reduce(

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import CaretRight from "../../../public/CaretRight.png";
 import Image from "next/image";
 import { useDispatch } from "react-redux";
