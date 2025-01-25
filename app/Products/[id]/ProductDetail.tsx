@@ -33,7 +33,6 @@ interface CartItem {
 }
 
 
-
 const ProductDetail: React.FC<{product: Product}> = ({ product }) => {
   const dispatch = useDispatch<AppDispatch>();
   const cartArray = useAppSelector((state) => state.cartReducer);

@@ -72,8 +72,7 @@
 import React from "react";
 import ProductDetail from "./ProductDetail";
 import { client } from "@/sanity/lib/client";
-import { useParams } from 'next/navigation'
-
+import { Metadata } from "next";
 
 const getProduct = async (id: string) => {
   const product = await client.fetch(
@@ -93,15 +92,23 @@ const getProduct = async (id: string) => {
   return product;
 };
 
-interface PageProps {
+// Use the built-in Next.js types for params
+interface Props {
   params: {
     id: string;
   };
 }
 
-const Page = async ({ params }: PageProps) => {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const product = await getProduct(params.id);
+  return {
+    title: product?.name || "Product Details",
+    description: product?.description || "Product not found",
+  };
+}
 
+const Page = async ({ params }: Props) => {
+  const product = await getProduct(params.id);
 
   if (!product) {
     return <p>Product not found</p>;
@@ -110,6 +117,6 @@ const Page = async ({ params }: PageProps) => {
   return <ProductDetail product={product} />;
 };
 
-
 export default Page;
+
 
