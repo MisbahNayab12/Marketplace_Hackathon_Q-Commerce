@@ -1,4 +1,3 @@
-// // 'use client'
 
 // import React from "react";
 // import CaretRight from '../../../public/CaretRight.png'
@@ -73,6 +72,8 @@
 import React from "react";
 import ProductDetail from "./ProductDetail";
 import { client } from "@/sanity/lib/client";
+import { useParams } from 'next/navigation'
+
 
 const getProduct = async (id: string) => {
   const product = await client.fetch(
@@ -94,12 +95,13 @@ const getProduct = async (id: string) => {
 
 interface PageProps {
   params: {
-    _id: string;
+    id: string;
   };
 }
 
 const Page = async ({ params }: PageProps) => {
-  const product = await getProduct(params._id);
+  const product = await getProduct(params.id);
+
 
   if (!product) {
     return <p>Product not found</p>;
@@ -107,6 +109,7 @@ const Page = async ({ params }: PageProps) => {
 
   return <ProductDetail product={product} />;
 };
+
 
 export default Page;
 

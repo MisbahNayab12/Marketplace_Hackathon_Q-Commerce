@@ -32,9 +32,7 @@ interface CartItem {
   quantity: number;
 }
 
-interface Props {
-  product: Product;
-}
+
 
 const ProductDetail: React.FC<{product: Product}> = ({ product }) => {
   const dispatch = useDispatch<AppDispatch>();
