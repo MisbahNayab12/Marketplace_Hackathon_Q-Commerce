@@ -52,7 +52,7 @@ const getCategories = async (): Promise<Category[]> => {
   return res;
 };
 
-const Page = () => {
+const ProductList = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -156,4 +156,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default ProductList;

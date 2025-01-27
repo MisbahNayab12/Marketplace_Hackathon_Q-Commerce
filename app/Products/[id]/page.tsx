@@ -75,8 +75,9 @@ import { client } from "@/sanity/lib/client";
 import { Metadata } from "next";
 
 const getProduct = async (id: string) => {
-  const product = await client.fetch(
-    `*[_type == "food" && _id == $id][0]{
+  try {
+    const product = await client.fetch(
+      `*[_type == "food" && _id == $id][0]{
         _id,
         name,
         category,
@@ -87,9 +88,13 @@ const getProduct = async (id: string) => {
         description,
         available
       }`,
-    { id }
-  );
-  return product;
+      { id }
+    );
+    return product || null;
+  } catch (err) {
+    console.error("Error fetching product:", err);
+    return null;
+  }
 };
 
 // Use the built-in Next.js types for params
@@ -101,9 +106,16 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const product = await getProduct(params.id);
+  if (!product) {
+    return {
+      title: "Product Not Found",
+      description: "The product you're looking for does not exist.",
+    };
+  }
+
   return {
-    title: product?.name || "Product Details",
-    description: product?.description || "Product not found",
+    title: product.name,
+    description: product.description,
   };
 }
 

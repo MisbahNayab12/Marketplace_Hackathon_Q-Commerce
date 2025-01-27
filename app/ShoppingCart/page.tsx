@@ -22,7 +22,7 @@ interface CartItem {
   quantity: number;
 }
 
-export default function Page() {
+export default function Cart() {
   const dispatch = useDispatch<AppDispatch>();
   const [CartItems, setCartItems] = useState<CartItem[]>([]);
   const [totalAmount, setTotalAmount] = useState(0); // NEW STATE to store the total bill amount.
